@@ -39,14 +39,21 @@ def resolve_mirna(user_input: str):
     return None
 
 # ── Inputs
+# ── Inputs
 st.subheader("Enter Prediction Inputs")
 mirna_input = st.text_input("miRNA name or accession number",
                              placeholder="e.g. hsa-miR-21, miR-155, MIMAT0000076")
 parasite    = st.selectbox("Parasite",  options['parasite'])
 organism    = st.selectbox("Organism",  options['organism'])
 cell_type   = st.selectbox("Cell type", options['cell_type'])
-time        = st.selectbox("Time (hours post-infection)", options['time'])
 
+time = st.number_input(
+    "Time (hours post-infection)",
+    min_value=int(min(options['time'])),
+    max_value=int(max(options['time'])),
+    value=int(options['time'][0]),
+    step=1
+)
 resolved = None
 if mirna_input:
     resolved = resolve_mirna(mirna_input)
