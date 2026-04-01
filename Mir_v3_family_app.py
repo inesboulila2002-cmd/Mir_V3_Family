@@ -50,7 +50,6 @@ cell_type   = st.selectbox("Cell type", options['cell_type'])
 time = st.number_input(
     "Time (hours post-infection)",
     min_value=int(min(options['time'])),
-    max_value=int(max(options['time'])),
     value=int(options['time'][0]),
     step=1
 )
